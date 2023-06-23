@@ -10,14 +10,13 @@ class Coins {
           `${BASE_URL}/search/trending/simple/price?ids=bitcoin&vs_currencies=${currency}`
         ),
       ]);
-
       const btcPrice = btcPriceRes.data.bitcoin.usd;
 
       const data = coinsRes.data.coins.map((coin) => {
         const { name, large, id, price_btc } = coin.item;
 
-        const priceUsd = (price_btc * btcPrice).toFixed(6);
-        const priceBtc = price_btc.toFixed(6);
+        const priceUsd = (price_btc * btcPrice).toFixed(12);
+        const priceBtc = price_btc.toFixed(12);
 
         return {
           id,
