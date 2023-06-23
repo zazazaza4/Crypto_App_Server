@@ -3,12 +3,12 @@ const coinsController = require("../controllers/coinsController.js");
 
 const router = express.Router();
 
-router.get("/", coinsController.getAllCoins);
+router.get("/coins", coinsController.getAllCoins);
 
 router.get("/search", coinsController.getCoinsBySearching);
 
 router.get("/trending", coinsController.getTopTrendingCoins);
 
-router.get("/:id", coinsController.getCoinById);
+router.get("/coins/:id", coinsController.getCoinById);
 
 module.exports = router;
