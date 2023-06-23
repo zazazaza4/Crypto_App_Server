@@ -3,7 +3,7 @@ const Coins = require("../models/coins.js");
 const coinsController = {};
 
 coinsController.getTopTrendingCoins = async (req, res) => {
-  const { currency } = req.query;
+  const { currency = "usd" } = req.query;
   try {
     const coins = await Coins.getTopTrendingCoins(currency);
     res.status(200).send({ coins });
