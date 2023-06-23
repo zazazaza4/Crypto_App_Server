@@ -7,9 +7,11 @@ class Coins {
       const [coinsRes, btcPriceRes] = await Promise.all([
         axios.get(`${BASE_URL}/search/trending`),
         axios.get(
-          `${BASE_URL}/search/trending/simple/price?ids=bitcoin&vs_currencies=${currency}`
+          `${BASE_URL}/simple/price?ids=bitcoin&vs_currencies=${currency}`
         ),
       ]);
+
+      console.log(coinsRes, btcPriceRes);
       const btcPrice = btcPriceRes.data.bitcoin.usd;
 
       const data = coinsRes.data.coins.map((coin) => {
