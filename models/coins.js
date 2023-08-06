@@ -37,13 +37,28 @@ class Coins {
 
   static async getCoinById(id) {
     try {
-      const { data } = await axios.get(`${BASE_URL}/coins/${id}`, {
-        params: {
-          localization: false,
-          market_data: true,
-        },
+      const [graphRes, dataRes] = await Promise.all([
+        axios.get(
+          `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=14&interval=30`
+        ),
+        axios.get(
+          `${BASE_URL}/coins/${id}?localization=false&market_data=true`
+        ),
+      ]);
+
+      const graphData = graphRes.data.prices.map((price) => {
+        const [timestamp, p] = price;
+        const date = new Date(timestamp).toLocaleDateString("en-us");
+        return {
+          Date: date,
+          Price: p,
+        };
       });
-      return data;
+
+      return {
+        data: dataRes,
+        graph: graphData,
+      };
     } catch (error) {
       throw new Error(error);
     }
