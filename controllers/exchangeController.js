@@ -5,7 +5,7 @@ const exchangeController = {};
 exchangeController.getAllExchanges = async (req, res) => {
   try {
     const exchanges = await Exchange.getAllExchanges();
-    res.status(200).json({ exchanges });
+    res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -20,7 +20,7 @@ exchangeController.getExchangeById = async (req, res) => {
     }
 
     const exchange = await Exchange.getExchangeById(id);
-    res.status(200).json({ exchange });
+    res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -36,7 +36,7 @@ exchangeController.getExchangeTickers = async (req, res) => {
     }
 
     const tickers = await Exchange.getExchangeTickers(id, page);
-    res.status(200).json({ tickers });
+    res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
@@ -51,7 +51,7 @@ exchangeController.getExchangeVolumeChart = async (req, res) => {
     }
 
     const volumeChart = await Exchange.getExchangeVolumeChart(id);
-    res.status(200).json({ volumeChart });
+    res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
