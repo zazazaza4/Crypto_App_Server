@@ -11,7 +11,6 @@ class Coins {
         ),
       ]);
 
-      console.log(coinsRes, btcPriceRes);
       const btcPrice = btcPriceRes.data.bitcoin.usd;
 
       const data = coinsRes.data.coins.map((coin) => {
@@ -56,10 +55,11 @@ class Coins {
       });
 
       return {
-        data: dataRes,
+        data: dataRes.data,
         graph: graphData,
       };
     } catch (error) {
+      console.log(error.message);
       throw new Error(error);
     }
   }
