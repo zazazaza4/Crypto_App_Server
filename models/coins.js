@@ -38,7 +38,7 @@ class Coins {
     try {
       const [graphRes, dataRes] = await Promise.all([
         axios.get(
-          `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=14&interval=30`
+          `${BASE_URL}/coins/${id}/market_chart?vs_currency=usd&days=14`
         ),
         axios.get(
           `${BASE_URL}/coins/${id}?localization=false&market_data=true`

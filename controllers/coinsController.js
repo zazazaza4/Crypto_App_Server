@@ -41,6 +41,7 @@ coinsController.getCoinById = async (req, res) => {
     if (!id) {
       return res.status(400).json({ error: "Missing cryptocurrency ID" });
     }
+
     const data = await Coins.getCoinById(id);
     res.status(200).send({ data });
   } catch (error) {
