@@ -85,25 +85,21 @@ class Coins {
 
   static async getCoinsBySearching(query = "") {
     try {
-      const { data } = await axios.get(`${BASE_URL}/coins/markets`, {
+      const { data } = await axios.get(`${BASE_URL}/search`, {
         params: {
-          vs_currency: query,
-          order: "market_cap_desc",
-          per_page: 10,
-          page: 1,
-          sparkline: false,
-          locale: "en",
+          query,
         },
       });
 
-      const formattedData = data.map((coin) => ({
-        id: coin.id,
-        name: coin.name,
-        image: coin.image,
+      const formattedData = data.coins.map((coin) => ({
+        id: coin?.id,
+        name: coin?.name,
+        image: coin?.large,
       }));
 
       return formattedData;
     } catch (error) {
+      console.log(error);
       throw new Error(error);
     }
   }
